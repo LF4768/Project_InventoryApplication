@@ -1,0 +1,15 @@
+table, td, th {
+    border: 1px black solid;
+    padding: 10px;
+}
+
+
+form {
+    display: flex;
+    flex-direction:  column;
+    width: 500px;
+}
+
+form * {
+    margin: 5px;
+}

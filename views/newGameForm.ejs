@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Game</title>
+    <link rel="stylesheet" href='./styles.css'>
+</head>
+<body>
+    <h1>Add New Game</h1>
+    <form method="post" action="/">
+        <div>
+            <label for="game_name">Enter Game Name:</label>
+            <input type="text" name="game_name" id="game_name"> 
+        </div>
+
+        <div>
+            <label for="developer_name">Enter Developer(s): (Seperated by comma)</label>
+            <input type="text" name="developer_name" id="developer_name"> 
+        </div>
+
+        <div>
+            <p>Select Genres:</p>
+            <% for (let i = 0; i < genres.length; i++) { %>
+                <input type="checkbox" name="genres_name"  value=<%= genres[i].genre_name %> id=<%= genres[i].genre_name %>>
+                <label for=<%= genres[i].genre_name %>><%= genres[i].genre_name %></label> 
+            <%} %>
+        </div>
+        
+        <div>   
+            <label for="rating">Enter Rating: (Upto 2 decimal points)</label>
+            <input type="text" name="rating" id="rating"> 
+        </div>
+
+        <button type="submit">Submit Game</button>
+    </form>
+</body>
+</html>

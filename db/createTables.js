@@ -4,11 +4,13 @@ const fs = require('fs')
 loadEnvFile()
 
 const SQL = `
+
 CREATE TABLE IF NOT EXISTS GAMES(
     game_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     game_name TEXT NOT NULL,
     rating NUMERIC(2,1)
 );
+
 
 CREATE TABLE IF NOT EXISTS GENRES(
     genre_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -37,6 +39,12 @@ CREATE TABLE IF NOT EXISTS GAMES_DEVELOPERS(
 CREATE INDEX idx_games_devs_dev_id ON GAMES_DEVELOPERS(developer_id);
 `
 
+
+const ALTERSQL = `
+ALTER TABLE GAMES
+ALTER COLUMN rating TYPE NUMERIC(3,1);
+`
+
 async function main() {
     console.log('seeding...')
     const client = new Client({
@@ -47,7 +55,7 @@ async function main() {
         }
     });
     await client.connect()
-    await client.query(SQL)
+    await client.query(ALTERSQL)
     await client.end();
     console.log('done')
 }
