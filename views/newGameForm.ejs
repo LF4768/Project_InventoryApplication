@@ -8,31 +8,38 @@
 </head>
 <body>
     <h1>Add New Game</h1>
-    <form method="post" action="/">
+    <form method="post" action="/new">
         <div>
             <label for="game_name">Enter Game Name:</label>
-            <input type="text" name="game_name" id="game_name"> 
+            <input type="text" value="<%= formData.game_name %>" name="game_name" id="game_name"> 
         </div>
 
         <div>
             <label for="developer_name">Enter Developer(s): (Seperated by comma)</label>
-            <input type="text" name="developer_name" id="developer_name"> 
+            <input type="text" value="<%= formData.developer_name %>" name="developer_name" id="developer_name"> 
         </div>
 
         <div>
             <p>Select Genres:</p>
             <% for (let i = 0; i < genres.length; i++) { %>
-                <input type="checkbox" name="genres_name"  value=<%= genres[i].genre_name %> id=<%= genres[i].genre_name %>>
-                <label for=<%= genres[i].genre_name %>><%= genres[i].genre_name %></label> 
+                <input type="checkbox" name="genres_name"  value=<%= i + 1 %> id=<%= genres[i].genre_name %>>
+                <label for=<%= genres[i].genre_name %> ><%= genres[i].genre_name %></label> 
             <%} %>
         </div>
         
         <div>   
             <label for="rating">Enter Rating: (Upto 2 decimal points)</label>
-            <input type="text" name="rating" id="rating"> 
+            <input type="text" value="<%= formData.rating%>" name="rating" id="rating"> 
         </div>
 
         <button type="submit">Submit Game</button>
     </form>
+    <div>
+        <ul>
+            <% for (let i = 0; i < errors.length; i++)  { %>
+                <li> <%= errors[i].msg %></li>
+            <% } %>
+        </ul>
+    </div>
 </body>
 </html>

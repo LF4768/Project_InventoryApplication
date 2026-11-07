@@ -1,8 +1,9 @@
 const pool = require('./pool')
 
 
-async function displayGames() {
-    const {rows} = await pool.query("SELECT * FROM GAMES;")
+async function displayGamesByName(name) {
+    const game_name = '%' + name + '%' 
+    const {rows} = await pool.query("SELECT * FROM GAMES WHERE game_name ILIKE $1;", [game_name])
     return rows;
 }
 
@@ -30,4 +31,22 @@ async function displayDevelopersById(id) {
 
 
 
-module.exports = {displayGames, displayAllGenres, displayGenresById, displayDevelopersById}
+async function displayDevelopersByName(name) {
+    const dev_name = '%' + name + '%';
+    const {rows} = await pool.query (`
+            SELECT * FROM DEVELOPERS WHERE developer_name ILIKE $1;
+        `, [dev_name])
+
+    return rows
+}
+
+// displayDevelopersByName('r')
+
+async function findGame(name) {
+    const {rows} = await pool.query('SELECT * FROM GAMES WHERE game_name = $1', [name])
+    return rows
+}
+
+
+
+module.exports = {displayGamesByName, displayAllGenres, displayGenresById, displayDevelopersById, displayDevelopersByName, findGame}

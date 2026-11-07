@@ -7,13 +7,13 @@ const SQL = `
 
 INSERT INTO DEVELOPERS(developer_name)
 VALUES 
-    ('Rockstar'),
-    ('FromSoftware'),
-    ('Capcom'),
-    ('Blizzard'),
-    ('Nintendo'),
-    ('Naughty Dog'),
-    ('Yuke');
+    ('rockstar'),
+    ('fromsoftware'),
+    ('capcom'),
+    ('blizzard'),
+    ('nintendo'),
+    ('naughty dog'),
+    ('yuke');
 `
 
 

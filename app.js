@@ -6,6 +6,7 @@ const app = express();
 const assetsPath = path.join(__dirname, 'public')
 const indexRouter = require('./routes/indexRouter')
 const newGameRouter = require('./routes/newGame')
+const devsRouter = require('./routes/devs')
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
@@ -14,16 +15,12 @@ app.use(express.static(assetsPath))
 app.use(express.urlencoded({extended: true}))
 app.use('/', indexRouter)
 app.use('/new', newGameRouter)
-
+app.use('/devs', devsRouter)
 
 app.get('/{*splat}', (req,res) => {
     res.status(404).send("Page Not Found")
 })
 
-app.post('/', (req,res) => {
-    console.log(req.body)
-    res.redirect('/')
-})
 
 
 const PORT = process.env.PORT || 5000;
